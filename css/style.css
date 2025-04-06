@@ -59,9 +59,9 @@ nav ul {
   gap: 2rem;
 }
 
-nav li:first-child {
-  flex: 0 0 100%;
-  /*  flex-grow flex-shrink flex-basis*/
+nav li:first-child,
+nav li:nth-child(2) {
+  flex: 0 0 100%;  /*  flex-grow 0 flex-shrink 0 flex-basis 100% */
   text-align: left;
 }
 
@@ -81,7 +81,6 @@ nav li:hover {
     }
   }
 
-
 .button{
   background-color: var(--aqua);
   color: var(--black);
@@ -95,18 +94,27 @@ nav li:hover {
     color: white; 
 }
 
+/* min-width is 850px for desktop size and 550px for mobile */
+
 @media (min-width: 850px) {
   nav {
     max-width: 1200px; /*  For gigantic displays, dont expand the buttons. */
     margin: 0 auto;
   }
 
-  nav li:first-child {
+  nav li:first-child,
+  nav li:nth-child(2) {
+  flex: 0 0 100%;  /*  flex-grow 0 flex-shrink 0 flex-basis 100% */
     flex-basis: auto;
     text-align: left;
+    /* margin-right: auto; */ 
+      /* applies to both of them, thus puts a gap between them! */
+  }
+  nav li:nth-child(2) {
     margin-right: auto;
   }
 }
+
 
 /* ---------------------------intro----------------------------- */
 
@@ -258,7 +266,7 @@ nav li:hover {
     }
   }
    
-  } /* media desktop size */
+  }  
 
 } /* projects */
 
