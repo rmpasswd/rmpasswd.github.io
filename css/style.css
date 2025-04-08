@@ -9,6 +9,7 @@
     --font-size: 1.3rem;
     --mono: "Roboto mono", monospace;
     --sans: Vollkorn, sans—serif;
+    
   }
   html {
     box-sizing: border-box;
@@ -19,10 +20,15 @@
   *::after {
     box-sizing: inherit;
   }
+/*
+* { 
+    border: 1px solid red;
+   border-color: red;
+} */
 
-body {
+ body {
   /*   padding: 0; */
-  /*   margin: 0; */
+  margin: 0;
   font-family: var(--sans);
   background-color: var(--black);
   color: var(--white);
@@ -59,6 +65,7 @@ nav ul {
   gap: 2rem;
 }
 
+
 nav li:first-child,
 nav li:nth-child(2) {
   flex: 0 0 100%;  /*  flex-grow 0 flex-shrink 0 flex-basis 100% */
@@ -76,10 +83,96 @@ nav a {
   display: block;
 }
 nav li:hover {
-    * {
-      color: orange;
-    }
+  * {
+    color: orange;
   }
+}
+
+nav {
+  max-width: 1200px; /*  For gigantic displays, keep it within a max width. */
+  margin: 0 auto;
+}
+
+
+@media (min-width: 850px) { /* For desktop */
+  
+  .hamburger-no-js {
+    display: none;
+  }
+
+  
+
+  nav li:first-child,
+  nav li:nth-child(2) {
+    flex: 0 0 100%;  /*  flex-grow 0 flex-shrink 0 flex-basis 100% */
+    flex-basis: auto;
+    text-align: left;
+    /* margin-right: auto; */ 
+    /* applies to both of them, thus puts a gap between them! */ 
+  } 
+  nav li:nth-child(2) { 
+    margin-right: auto; 
+  } 
+} 
+
+
+/* .hamburger-no-js{   display: none;  } */
+
+@media (max-width: 850px) {  /* FOR MOBILE DEVICE */ 
+ 
+  .hamburger-no-js::before,
+  .hamburger-no-js::after,
+  .hamburger-no-js input {
+    appearance: none; 
+    padding: 0; margin: 0;
+    outline: none;
+    pointer-events: none;
+  }
+
+  /* Toggle between menubar icon and xmark */
+  .fa-bars, .fa-xmark { /* .xbars { transition: opacity } doesn't work */
+      transition: opacity 1s ease-in-out;
+  }
+  .fa-xmark{ 
+    opacity: 0;
+    /* width: 0; */
+    /* padding: 0; margin: 0; */
+    }
+  .hamburger-no-js input:checked + span{
+    .fa-bars{ 
+      opacity: 0;
+      /* width: 0;  */
+      /* padding: 0; margin: 0; */
+      }
+    .fa-xmark{ 
+      opacity: 1;
+      }
+  }
+            /*       */
+  nav ul { 
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1.5rem;
+    align-items: start;
+    justify-content: space-between;
+    li:has(a span.fa-house) {
+      visibility: hidden; /* keeps the margin & padding*/
+      
+    }
+
+    translate: -100%;
+    transition: translate 700ms ease-out;
+  } 
+  
+  .hamburger-no-js:has(input:checked) + ul{
+    translate: 0;
+  }
+
+
+
+}
+
+
 
 .button{
   background-color: var(--aqua);
@@ -94,30 +187,9 @@ nav li:hover {
     color: white; 
 }
 
-/* min-width is 850px for desktop size and 550px for mobile */
 
-@media (min-width: 850px) {
-  nav {
-    max-width: 1200px; /*  For gigantic displays, dont expand the buttons. */
-    margin: 0 auto;
-  }
-
-  nav li:first-child,
-  nav li:nth-child(2) {
-  flex: 0 0 100%;  /*  flex-grow 0 flex-shrink 0 flex-basis 100% */
-    flex-basis: auto;
-    text-align: left;
-    /* margin-right: auto; */ 
-      /* applies to both of them, thus puts a gap between them! */
-  }
-  nav li:nth-child(2) {
-    margin-right: auto;
-  }
-}
-
-
-/* ---------------------------intro----------------------------- */
-
+/* ---------------------------intro----------------------------- */ 
+ 
 #intro {
 
     font-size: 150%;
@@ -191,7 +263,6 @@ nav li:hover {
 
   ul {
     list-style-type: none;
-
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start; /* horizontal */
@@ -207,18 +278,14 @@ nav li:hover {
     border-top: 1px solid aqua; 
     border-radius: 20px;
   }
-* {
-  /* border: 1px solid red; */
-  /* border-color: red; */
-}
 
-  @media (min-width: 550px) { 
+
      
   article:nth-child(odd) {    /* With :nth-child(n) , all children are counted, regardless of what they are */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    
+
     .text {
       order: 2; /* z-index ?*/
       text-align: left;
@@ -244,7 +311,7 @@ nav li:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    
+
     .text {
       order: 2; /* z-index ?*/
       text-align: right;
@@ -265,7 +332,9 @@ nav li:hover {
       padding-top: 1rem;
     }
   }
-   
+  
+  @media (min-width: 550px) { 
+
   }  
 
 } /* projects */
@@ -275,51 +344,52 @@ nav li:hover {
 
 /* ---------------------------contact----------------------------- */
 #contact {
-  background-color: #153c4e;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 0 1rem 0;    /* putting distance under gradient line */
+  background-color: #153c4e; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 1rem 0 1rem 0;    /* putting distance under gradient line */ 
   
-  * {
-    text-align: center;
-    width: 400px; 
-    /* this way, only all the children will be 400px; but the entire contanct section will have the bg color. */
-    margin: 0 auto; /*  width and margin works together */
-    font-family: "Roboto Mono";
-    font-size: 0.8rem;
-  }
-
-  p:last-child {
-    text-decoration: underline;
-    margin-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    display: block;
-    &:hover {
-      cursor: crosshair;
-      color: blue;
-    }
-  }
-}
+  * { 
+    text-align: center; 
+    width: 400px;  
+    /* this way, only all the children will be 400px; but the entire contanct section will have the bg color. */ 
+    margin: 0 auto; /*  width and margin works together */ 
+    font-family: "Roboto Mono"; 
+    font-size: 0.8rem; 
+  } 
+ 
+  p:last-child { 
+    text-decoration: underline; 
+    margin-top: 0.5rem; 
+    padding-bottom: 0.5rem; 
+    display: block; 
+    &:hover { 
+      cursor: crosshair; 
+      color: blue; 
+    } 
+  } 
+} 
 
 
 /* ---------------------------footer----------------------------- */
 
-footer {
-  text-align: center; /*   this is a property that will inherited by all the descendents */
-  font-family: "Times New Roman", Times, serif;
-  padding: 1rem 0 1rem 0;    /* putting distance under gradient line */
-
-}
-
-footer ul {
-  padding: 0;
-  margin: 1rem 0;
-  list-style-type: none;
-  font-size: 1.5rem;
-
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center; /* horizontal axis */
-  align-items: center; /* vertical axis*/
-  gap: 2rem;
-}
+footer { 
+  text-align: center; /*   this is a property that will inherited by all the descendents */ 
+  font-family: "Times New Roman", Times, serif; 
+  padding: 1rem 0 1rem 0;    /* putting distance under gradient line */ 
+ 
+} 
+ 
+footer ul { 
+  padding: 0; 
+  margin: 1rem 0; 
+  list-style-type: none; 
+  font-size: 1.5rem; 
+ 
+  display: flex; 
+  flex-flow: row wrap; 
+  justify-content: center; /* horizontal axis */ 
+  align-items: center; /* vertical axis*/ 
+  gap: 2rem; 
+} 
+ 
