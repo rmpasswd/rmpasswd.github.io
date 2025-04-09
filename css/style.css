@@ -124,7 +124,7 @@ nav {
   .hamburger-no-js::after,
   .hamburger-no-js input {
     appearance: none; 
-    padding: 0; margin: 0;
+    padding: auto; margin: auto;
     outline: none;
     pointer-events: none;
   }
@@ -154,22 +154,35 @@ nav {
     flex-flow: column wrap;
     gap: 1.5rem;
     align-items: start;
-    justify-content: space-between;
-    li:has(a span.fa-house) {
-      visibility: hidden; /* keeps the margin & padding*/
-      
-    }
-
+    justify-content: space-between;    
     translate: -100%;
-    transition: translate 700ms ease-out;
+    transition: translate 600ms ease-out;
+    /* display: none; */
+    /* visibility: hidden; */
   } 
-  
-  .hamburger-no-js:has(input:checked) + ul{
-    translate: 0;
+
+  nav ul li:has(a span.fa-house){
+    display: none; 
+    /* visibility: hidden; keeps the margin & padding       */
+    /* notice this is applied on the li element, not ul or nav*/
   }
 
+  nav {
+    max-height: 0;
+    transition: max-height 0.4s ease, transform 0.4s ease;
+    transform: translateY(-1rem);
+    opacity: 0;
+    pointer-events: none;
+  }
 
-
+  .hamburger-no-js:has(input:checked) + nav {
+    max-height: 100vh; /* Or the actual menu height */
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;    ul {
+      translate: 0;
+      }
+  }
 }
 
 
@@ -189,7 +202,7 @@ nav {
 
 
 /* ---------------------------intro----------------------------- */ 
- 
+
 #intro {
 
     font-size: 150%;
