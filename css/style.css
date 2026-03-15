@@ -6,7 +6,7 @@
     --aqua: #86fbfb;
     --white: #f7f8fa;
     --darkorange: #ff8c00;
-    --font-size: 1.3rem;
+    --font-size: 1.5rem;
     --mono: "Roboto mono", monospace;
     --sans: Vollkorn, sans—serif;
     
@@ -132,6 +132,7 @@ nav {
   /* Toggle between menubar icon and xmark */
   .fa-bars, .fa-xmark { /* .xbars { transition: opacity } doesn't work */
       transition: opacity 1s ease-in-out;
+      padding: 0.5rem 0.5rem;
   }
   .fa-xmark{ 
     opacity: 0;
@@ -206,7 +207,8 @@ nav {
 #intro {
 
     font-size: 150%;
-    padding: 4rem 1rem 10rem 1rem;
+    /* padding: 4rem 1rem 10rem 1rem;    */
+    padding: 4rem 1rem 0rem 1rem;   
     max-width: 1200px;
     margin: 0 auto;
 
@@ -224,7 +226,7 @@ nav {
 
     p {
         line-height: 1.5;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
     p:nth-child(2) {
         font-size: 0.8rem;
@@ -237,21 +239,22 @@ nav {
   span {
     font-size: 2.5rem;
     color: var(--aqua);
-    display: block;
+    display: grid;
   }
 }
 
 
 /* ---------------------------projects----------------------------- */
 
-#projects,#about-page{
+#projects{
   background-color: #0d314b;
-  padding: 4rem 1rem 10rem 1rem;
+  /* padding: 4rem 1rem 10rem 1rem; */
+  padding: 1rem 1rem 10rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 
   h2 {
-    font-size:2rem;
+    font-size: 2rem;
     margin-bottom: calc(2rem * 1.5);
   }
 
@@ -262,9 +265,10 @@ nav {
   h3 {
     color: aqua;
     margin-top: 0%;
+    font-size: 1.8rem;
   }
 
-  .project-description, #about-description {
+  .project-description{
     background-color: #171321;
     padding: 1rem;
     border-radius: 10px;
@@ -281,7 +285,10 @@ nav {
     flex-flow: row wrap;
     justify-content: flex-start; /* horizontal */
     align-items: center; /* vertical */
-    gap: 2rem;
+    gap: 1rem;
+
+    padding: 0; margin:  0;
+    /* added  to  remove  left padding on tech  stacks  on even numbered articles  because  ul tag has a default 40px padding */
   }
 
   img {
@@ -299,6 +306,7 @@ nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    padding-bottom: 5rem;
 
     .text {
       order: 2; /* z-index ?*/
@@ -325,6 +333,7 @@ nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    padding-bottom: 5rem;
 
     .text {
       order: 2; /* z-index ?*/
